@@ -24,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "skills/kubernetes-specialist/SKILL.md",
       "computedHash": "9c5eb68fc9d553ee29e745258bc6198563158c4b2c57436d63647e61010b5f0a"
+    },
+    "terraform-stacks": {
+      "source": "hashicorp/agent-skills",
+      "sourceType": "github",
+      "skillPath": "terraform/module-generation/skills/terraform-stacks/SKILL.md",
+      "computedHash": "c90c845f0d9b08341d6c85d6957f105e8973582870f4a6601f5366dc57d8171a"
     }
   }
 }

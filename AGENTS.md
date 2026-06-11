@@ -6,7 +6,7 @@ Welcome to the infrastructure configuration repository. This project manages Kub
 
 Tip: When manipulating kubernetes cluster, must get granted from user first. For sensitive data, put it into values.yaml and encryt it with sops.
 
-- **Structure:** The `apps/` directory is the root for Kubernetes service definitions. Each subdirectory represents a logical service (e.g., `postgresql/`, `ollama/`).
+- **Structure:** The `apps/` directory is the root for Kubernetes service definitions. Each subdirectory represents a logical service (e.g., `postgresql/`).
 - **Adding Services:**
   1. Create a subdirectory under `apps/`.
   2. Include a `README.md` documenting the service.

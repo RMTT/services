@@ -1,1 +1,7 @@
 .tar.gz
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+cf_ids.yaml
