@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: miniflux
+  namespace: miniflux
+spec:
+  interval: 10m
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: operators
+    - name: authelia
+      namespace: authelia
+  valuesFrom:
+    - kind: Secret
+      name: helm-values
+      valuesKey: values.yaml
+  chart:
+    spec:
+      chart: ./charts/miniflux
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m

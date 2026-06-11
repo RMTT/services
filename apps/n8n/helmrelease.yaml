@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: n8n
+  namespace: n8n
+spec:
+  interval: 10m
+  dependsOn:
+    - name: nfs-csi
+      namespace: kube-system
+    - name: cloudnative-pg
+      namespace: operators
+  valuesFrom:
+    - kind: Secret
+      name: helm-values
+  chart:
+    spec:
+      chart: ./charts/n8n
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m

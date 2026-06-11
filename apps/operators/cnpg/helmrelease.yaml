@@ -1,0 +1,39 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cloudnative-pg
+  namespace: operators
+spec:
+  interval: 10m
+  url: https://cloudnative-pg.github.io/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cloudnative-pg
+  namespace: operators
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: cloudnative-pg
+      version: 0.28.2
+      sourceRef:
+        kind: HelmRepository
+        name: cloudnative-pg
+        namespace: operators
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  values:
+    enabled: true
+    includeCRDs: true
+    nodeSelector:
+      kubernetes.io/hostname: kube-runner

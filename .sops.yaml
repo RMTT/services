@@ -1,0 +1,13 @@
+keys:
+  - &admin BD15904159AF89DEB3A61039DFAFB71F7972D48D
+
+  - &default-age age1g2c7cf39cnfrhjdsrcpjz8zsm9gtwymwnjum78x870xa40vtdgys2ddwls 
+  - age-keys: &age-keys
+    - *default-age
+    
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    encrypted_regex: ^(data|stringData)$
+    pgp: *admin
+    age: *age-keys
