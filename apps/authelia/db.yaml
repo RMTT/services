@@ -21,6 +21,7 @@ spec:
       destinationPath: s3://postgresql-backup/authelia-db
       endpointURL: http://nas.infra.rmtt.host:30188
       s3Credentials:
+        region: garage
         accessKeyId:
           name: cnpg-s3
           key: cnpg-s3-id
