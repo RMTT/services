@@ -21,7 +21,9 @@ spec:
       destinationPath: s3://postgresql-backup/miniflux-db
       endpointURL: http://nas.infra.rmtt.host:30188
       s3Credentials:
-        region: garage
+        region:
+          name: cnpg-s3
+          key: region
         accessKeyId:
           name: cnpg-s3
           key: cnpg-s3-id
