@@ -27,10 +27,11 @@ spec:
     persistence:
         karakeep:
             enabled: true
-            size: 5Gi
+            size: 50Gi
+            storageClass: "juicefs-oracle"
         meilisearch:
             enabled: true
-            size: 5Gi
+            size: 10Gi
   install:
     createNamespace: true
     strategy:
