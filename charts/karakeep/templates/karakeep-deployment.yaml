@@ -18,7 +18,7 @@ spec:
       {{- end }}
       containers:
         - name: web
-          image: ghcr.io/karakeep-app/karakeep:{{ .Chart.AppVersion }}
+          image: "ghcr.io/karakeep-app/karakeep:{{ .Chart.AppVersion }}"
           ports:
             - containerPort: 3000
           env:
