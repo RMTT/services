@@ -90,8 +90,6 @@ spec:
               value: "30"
             - name: CRAWLER_STORE_PDF
               value: "true"
-            - name: CRAWLER_VIDEO_DOWNLOAD
-              value: "true"
           volumeMounts:
             - mountPath: /data
               name: data
