@@ -18,7 +18,7 @@ spec:
       {{- end }}
       containers:
         - name: web
-          image: ghcr.io/karakeep-app/karakeep: {{ .Chart.AppVersion }}
+          image: ghcr.io/karakeep-app/karakeep:{{ .Chart.AppVersion }}
           ports:
             - containerPort: 3000
           env:
@@ -89,6 +89,8 @@ spec:
             - name: CRAWLER_SCREENSHOT_TIMEOUT_SEC
               value: "30"
             - name: CRAWLER_STORE_PDF
+              value: "true"
+            - name: CRAWLER_VIDEO_DOWNLOAD
               value: "true"
           volumeMounts:
             - mountPath: /data
