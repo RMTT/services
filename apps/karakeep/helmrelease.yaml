@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: authelia
       namespace: authelia
-  interval: 1m
+  interval: 10m
 
   chart:
     spec:

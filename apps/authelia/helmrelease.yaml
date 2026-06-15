@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: operators
-  interval: 1m
+  interval: 10m
 
   valuesFrom:
     - kind: Secret

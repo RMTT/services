@@ -5,7 +5,7 @@ metadata:
   name: miniflux
   namespace: miniflux
 spec:
-  interval: 1m
+  interval: 10m
   dependsOn:
     - name: cloudnative-pg
       namespace: operators
