@@ -10,6 +10,7 @@ mountOptions:
   - writeback
   - cache-size=102400
   - cache-dir=/cache
+  - noatime
 parameters:
   csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-homeserver
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
@@ -27,6 +28,7 @@ mountOptions:
   - writeback
   - cache-size=102400
   - cache-dir=/var/lib/rancher/k3s/data/jfscache
+  - noatime
 parameters:
   csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-oracle
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
