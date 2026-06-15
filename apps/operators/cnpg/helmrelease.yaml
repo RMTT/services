@@ -36,4 +36,4 @@ spec:
     enabled: true
     includeCRDs: true
     nodeSelector:
-      kubernetes.io/hostname: kube-runner
+      kubernetes.io/hostname: homeserver

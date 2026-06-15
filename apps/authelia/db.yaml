@@ -1,0 +1,40 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: authelia-db
+  namespace: authelia
+spec:
+  instances: 1
+  storage:
+    storageClass: local-path
+    size: 5Gi
+  bootstrap:
+    initdb:
+      database: authelia
+      owner: authelia
+  affinity:
+    nodeSelector:
+      kubernetes.io/hostname: homeserver
+  backup:
+    retentionPolicy: "30d"
+    barmanObjectStore:
+      destinationPath: s3://postgresql-backup/authelia-db
+      endpointURL: http://nas.infra.rmtt.host:30188
+      s3Credentials:
+        accessKeyId:
+          name: cnpg-s3
+          key: cnpg-s3-id
+        secretAccessKey:
+          name: cnpg-s3
+          key: cnpg-s3-key
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: authelia-db-backup
+  namespace: authelia
+spec:
+  schedule: "0 0 */2 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: authelia-db

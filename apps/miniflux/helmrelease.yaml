@@ -27,6 +27,15 @@ spec:
     strategy:
       name: RetryOnFailure
       retryInterval: 5m
+  values:
+    service:
+      nodePort: 30004
+    database:
+      size: 5Gi
+      storageClassName: local-path
+    nodeSelector:
+      kubernetes.io/hostname: oracle
+    env: []
   upgrade:
     strategy:
       name: RetryOnFailure

@@ -32,6 +32,12 @@ spec:
       containers:
         - name: authelia
           image: authelia/authelia:{{ .Chart.AppVersion }}
+          env:
+            - name: AUTHELIA_STORAGE_POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: authelia-db-app
+                  key: password
           ports:
             - containerPort: 9091
           livenessProbe:

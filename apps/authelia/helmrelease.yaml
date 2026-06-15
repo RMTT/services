@@ -22,6 +22,18 @@ spec:
     strategy:
       name: RetryOnFailure
       retryInterval: 5m
+  values:
+    config:
+      domain: rmtt.tech
+      autheliaUrl: https://auth.rmtt.tech
+    nodeSelector:
+      kubernetes.io/hostname: homeserver 
+    service:
+      nodePort: 30002
+    persistence:
+      enabled: true
+      size: 1Gi
+      storageClassName: local-path
   upgrade:
     strategy:
       name: RetryOnFailure

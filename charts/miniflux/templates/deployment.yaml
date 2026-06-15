@@ -65,7 +65,6 @@ spec:
               value: "1"
             {{- end }}
 
-
             - name: ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:

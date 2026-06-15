@@ -1,0 +1,34 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: juicefs-homeserver
+provisioner: csi.juicefs.com
+reclaimPolicy: Delete 
+volumeBindingMode: Immediate
+mountOptions:
+  - writeback
+  - cache-size=102400
+  - cache-dir=/cache
+parameters:
+  csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-homeserver
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-name: juicefs-secret-homeserver
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: juicefs-oracle
+provisioner: csi.juicefs.com
+reclaimPolicy: Delete 
+volumeBindingMode: Immediate
+mountOptions:
+  - writeback
+  - cache-size=102400
+  - cache-dir=/var/lib/rancher/k3s/data/jfscache
+parameters:
+  csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-oracle
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-name: juicefs-secret-oracle
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
