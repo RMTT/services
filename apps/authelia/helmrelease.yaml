@@ -5,6 +5,9 @@ metadata:
   name: authelia
   namespace: authelia
 spec:
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: operators
   interval: 10m
 
   valuesFrom:

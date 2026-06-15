@@ -5,11 +5,11 @@ metadata:
   name: karakeep
   namespace: karakeep
 spec:
+  dependsOn:
+    - name: authelia
+      namespace: authelia
   interval: 10m
 
-  valuesFrom:
-    - kind: Secret
-      name: helm-values
   chart:
     spec:
       chart: ./charts/karakeep
@@ -17,6 +17,20 @@ spec:
         kind: GitRepository
         name: flux-system
         namespace: flux-system
+
+  valuesFrom:
+    - kind: Secret
+      name: helm-values
+  values:
+    nodeSelector:
+        kubernetes.io/hostname: oracle
+    persistence:
+        karakeep:
+            enabled: true
+            size: 5Gi
+        meilisearch:
+            enabled: true
+            size: 5Gi
   install:
     createNamespace: true
     strategy:
