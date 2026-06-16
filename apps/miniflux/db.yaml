@@ -20,6 +20,9 @@ spec:
     barmanObjectStore:
       destinationPath: s3://postgresql-backup/miniflux-db
       endpointURL: http://nas.infra.rmtt.host:30188
+      wal:
+        compression: gzip
+        encryption: AES256
       s3Credentials:
         region:
           name: cnpg-s3
@@ -37,7 +40,7 @@ metadata:
   name: miniflux-db-backup
   namespace: miniflux
 spec:
-  schedule: "0 0 */2 * * *"
+  schedule: "0 0 2 * * *"
   backupOwnerReference: self
   cluster:
     name: miniflux-db

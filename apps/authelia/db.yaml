@@ -20,6 +20,9 @@ spec:
     barmanObjectStore:
       destinationPath: s3://postgresql-backup/authelia-db
       endpointURL: http://nas.infra.rmtt.host:30188
+      wal:
+        compression: gzip
+        encryption: AES256
       s3Credentials:
         region:
           name: cnpg-s3
@@ -37,7 +40,7 @@ metadata:
   name: authelia-db-backup
   namespace: authelia
 spec:
-  schedule: "0 0 * * * *"
+  schedule: "0 0 2 * * *"
   backupOwnerReference: self
   cluster:
     name: authelia-db
