@@ -4,7 +4,7 @@ kind: StorageClass
 metadata:
   name: juicefs-homeserver
 provisioner: csi.juicefs.com
-reclaimPolicy: Delete 
+reclaimPolicy: Retain
 volumeBindingMode: Immediate
 mountOptions:
   - writeback
@@ -23,7 +23,7 @@ kind: StorageClass
 metadata:
   name: juicefs-oracle
 provisioner: csi.juicefs.com
-reclaimPolicy: Delete 
+reclaimPolicy: Retain
 volumeBindingMode: Immediate
 mountOptions:
   - writeback

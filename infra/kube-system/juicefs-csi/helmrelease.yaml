@@ -39,6 +39,8 @@ spec:
     dashboard:
       service:
         type: NodePort
+    controller:
+      replicas: 2
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
