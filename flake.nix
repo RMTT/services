@@ -25,6 +25,7 @@
             packages = with pkgs; [
               kubectl
               kubectl-cnpg
+              fluxcd
             ];
           };
         }
