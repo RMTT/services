@@ -19,16 +19,6 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      initContainers:
-        - name: seed-users
-          image: busybox:1.38.0
-          command: ['sh', '-c', 'if [ ! -f /data/users_database.yml ]; then cp /seed/users_database.yml /data/users_database.yml; fi']
-          volumeMounts:
-            - name: data
-              mountPath: /data
-            - name: seed-users
-              mountPath: /seed
-              readOnly: true
       containers:
         - name: authelia
           image: authelia/authelia:{{ .Chart.AppVersion }}
@@ -61,6 +51,9 @@ spec:
               mountPath: /config/configuration.yml
               subPath: configuration.yml
               readOnly: true
+            - name: authelia-users
+              mountPath: /config/users
+              readOnly: true
             - name: data
               mountPath: /data
             - name: tmp
@@ -71,7 +64,7 @@ spec:
         - name: config-file
           secret:
             secretName: authelia-config
-        - name: seed-users
+        - name: authelia-users
           secret:
             secretName: authelia-users
         - name: data
