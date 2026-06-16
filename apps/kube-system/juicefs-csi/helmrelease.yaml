@@ -53,7 +53,7 @@ spec:
   chart:
     spec:
       chart: redis
-      version: 27.0.8
+      version: 27.0.9
       sourceRef:
         kind: HelmRepository
         name: bitnami
@@ -82,7 +82,7 @@ spec:
   chart:
     spec:
       chart: redis
-      version: 27.0.8
+      version: 27.0.9
       sourceRef:
         kind: HelmRepository
         name: bitnami
