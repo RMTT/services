@@ -37,7 +37,7 @@ metadata:
   name: authelia-db-backup
   namespace: authelia
 spec:
-  schedule: "0 0 */2 * * *"
+  schedule: "0 0 * * * *"
   backupOwnerReference: self
   cluster:
     name: authelia-db
