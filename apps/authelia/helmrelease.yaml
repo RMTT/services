@@ -16,6 +16,7 @@ spec:
   chart:
     spec:
       chart: ./charts/authelia
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: flux-system

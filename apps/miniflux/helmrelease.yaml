@@ -18,6 +18,7 @@ spec:
   chart:
     spec:
       chart: ./charts/miniflux
+      reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
         name: flux-system
