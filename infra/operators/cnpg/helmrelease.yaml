@@ -35,5 +35,3 @@ spec:
   values:
     enabled: true
     includeCRDs: true
-    nodeSelector:
-      kubernetes.io/hostname: homeserver

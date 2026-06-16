@@ -39,9 +39,6 @@ spec:
     dashboard:
       service:
         type: NodePort
-    controller:
-      nodeSelector:
-        kubernetes.io/hostname: homeserver
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
