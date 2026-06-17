@@ -1,6 +1,6 @@
 image:
-  repository: machines/filestash
-  tag: latest
+  repository: machines/stash
+  tag: enterprise
 
 service:
   type: NodePort
