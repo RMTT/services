@@ -26,8 +26,8 @@ spec:
       nodePort: 30010
     persistence:
       enabled: true
-    storageClass: "local-path"
-  size: 5Gi
+      storageClass: "local-path"
+      size: 5Gi
   upgrade:
     strategy:
       name: RetryOnFailure
