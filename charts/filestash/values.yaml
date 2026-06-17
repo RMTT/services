@@ -1,0 +1,17 @@
+image:
+  repository: machines/filestash
+  tag: latest
+
+service:
+  type: NodePort
+  nodePort: 30010
+  port: 8334
+
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  size: 5Gi
+
+nodeSelector: {}
+
+env: []

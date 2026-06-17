@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: filestash
+  namespace: filestash
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: ./charts/filestash
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  values:
+    nodeSelector:
+      kubernetes.io/hostname: oracle
+    service:
+      nodePort: 30010
+    persistence:
+      enabled: true
+    storageClass: "local-path"
+  size: 5Gi
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
