@@ -39,6 +39,9 @@ spec:
       collector: alloy-metrics
       linuxHosts:
         enabled: true
+    nodeLogs:
+      enabled: true
+      collector: alloy-logs
     integrations:
       collector: alloy-metrics
       alloy:
@@ -47,11 +50,16 @@ spec:
             labelSelectors:
               app.kubernetes.io/name:
                 - alloy-metrics
+                - alloy-logs
     collectors:
       alloy-metrics:
         presets:
           - clustered
           - statefulset
+      alloy-logs:
+        presets:
+          - filesystem-log-reader
+          - daemonset
     telemetryServices:
       kube-state-metrics:
         deploy: true
