@@ -4,9 +4,10 @@ kind: HelmRelease
 metadata:
   name: filestash
   namespace: filestash
+  annotations:
+    kustomize.toolkit.fluxcd.io/reconcile: disabled
 spec:
   interval: 10m
-  suspend: true
   chart:
     spec:
       chart: ./charts/filestash

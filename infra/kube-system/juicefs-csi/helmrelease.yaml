@@ -40,13 +40,15 @@ spec:
       service:
         type: NodePort
     controller:
-      replicas: 2
+      replicas: 1
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: juicefs-redis-homeserver
   namespace: kube-system
+  annotations:
+    kustomize.toolkit.fluxcd.io/reconcile: disabled
 spec:
   interval: 10m
   chart:
