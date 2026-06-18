@@ -3,6 +3,8 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: juicefs-homeserver
+  annotations:
+    kustomize.toolkit.fluxcd.io/reconcile: disabled
 provisioner: csi.juicefs.com
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
