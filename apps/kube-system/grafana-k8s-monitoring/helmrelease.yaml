@@ -42,9 +42,6 @@ spec:
     nodeLogs:
       enabled: true
       collector: alloy-logs
-    podLogsViaLoki:
-      enabled: true
-      collector: alloy-logs
     integrations:
       collector: alloy-metrics
       alloy:
@@ -53,7 +50,6 @@ spec:
             labelSelectors:
               app.kubernetes.io/name:
                 - alloy-metrics
-                - alloy-singleton
                 - alloy-logs
     collectors:
       alloy-metrics:
