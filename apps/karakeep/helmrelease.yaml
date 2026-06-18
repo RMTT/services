@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: karakeep
   namespace: karakeep
-  annotations:
-    kustomize.toolkit.fluxcd.io/reconcile: disabled
 spec:
   dependsOn:
     - name: authelia

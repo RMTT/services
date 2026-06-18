@@ -18,15 +18,12 @@ spec:
   backup:
     retentionPolicy: "30d"
     barmanObjectStore:
-      destinationPath: s3://postgresql-backup/authelia-db
-      endpointURL: http://nas.infra.rmtt.host:30188
+      destinationPath: s3://mts-postgresql-backup/authelia-db
+      endpointURL: https://s3.us-east-005.backblazeb2.com
       wal:
         compression: gzip
         encryption: AES256
       s3Credentials:
-        region:
-          name: cnpg-s3
-          key: region
         accessKeyId:
           name: cnpg-s3
           key: cnpg-s3-id
