@@ -1,24 +1,24 @@
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: juicefs-homeserver
-  annotations:
-    kustomize.toolkit.fluxcd.io/reconcile: disabled
-provisioner: csi.juicefs.com
-reclaimPolicy: Retain
-volumeBindingMode: Immediate
-mountOptions:
-  - writeback
-  - cache-size=102400
-  - cache-dir=/cache
-  - noatime
-parameters:
-  csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-homeserver
-  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
-  csi.storage.k8s.io/node-publish-secret-name: juicefs-secret-homeserver
-  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
-  pathPattern: "${.pvc.namespace}-${.pvc.name}"
+# ---
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   name: juicefs-homeserver
+#   annotations:
+#     kustomize.toolkit.fluxcd.io/reconcile: disabled
+# provisioner: csi.juicefs.com
+# reclaimPolicy: Retain
+# volumeBindingMode: Immediate
+# mountOptions:
+#   - writeback
+#   - cache-size=102400
+#   - cache-dir=/cache
+#   - noatime
+# parameters:
+#   csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-homeserver
+#   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+#   csi.storage.k8s.io/node-publish-secret-name: juicefs-secret-homeserver
+#   csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+#   pathPattern: "${.pvc.namespace}-${.pvc.name}"
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
