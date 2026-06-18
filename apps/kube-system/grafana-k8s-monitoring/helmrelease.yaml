@@ -39,9 +39,6 @@ spec:
       collector: alloy-metrics
       linuxHosts:
         enabled: true
-    clusterEvents:
-      enabled: true
-      collector: alloy-singleton
     nodeLogs:
       enabled: true
       collector: alloy-logs
@@ -63,9 +60,6 @@ spec:
         presets:
           - clustered
           - statefulset
-      alloy-singleton:
-        presets:
-          - singleton
       alloy-logs:
         presets:
           - filesystem-log-reader
