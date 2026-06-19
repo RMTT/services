@@ -35,7 +35,7 @@ spec:
       size: 5Gi
       storageClassName: local-path
     nodeSelector:
-      kubernetes.io/hostname: oracle
+      topology.kubernetes.io/region: oracle
     env: []
   upgrade:
     strategy:

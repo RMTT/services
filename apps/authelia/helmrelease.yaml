@@ -31,7 +31,7 @@ spec:
       domain: rmtt.tech
       autheliaUrl: https://auth.rmtt.tech
     nodeSelector:
-      kubernetes.io/hostname: oracle
+      topology.kubernetes.io/region: oracle
     service:
       nodePort: 30002
     persistence:

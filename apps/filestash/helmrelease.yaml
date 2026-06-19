@@ -23,7 +23,7 @@ spec:
       retryInterval: 5m
   values:
     nodeSelector:
-      kubernetes.io/hostname: oracle
+      topology.kubernetes.io/region: oracle
     service:
       nodePort: 30010
     persistence:

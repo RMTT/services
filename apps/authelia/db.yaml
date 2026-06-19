@@ -14,7 +14,7 @@ spec:
       owner: authelia
   affinity:
     nodeSelector:
-      kubernetes.io/hostname: oracle
+      topology.kubernetes.io/region: oracle
   backup:
     retentionPolicy: "30d"
     barmanObjectStore:

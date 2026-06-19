@@ -100,4 +100,4 @@ spec:
         storageClass: local-path
         size: 10Gi
       nodeSelector:
-        kubernetes.io/hostname: oracle
+        topology.kubernetes.io/region: oracle

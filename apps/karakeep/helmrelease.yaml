@@ -24,7 +24,7 @@ spec:
       name: helm-values
   values:
     nodeSelector:
-        kubernetes.io/hostname: oracle
+        topology.kubernetes.io/region: oracle
     persistence:
         karakeep:
             enabled: true
