@@ -50,12 +50,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /home/node/trilium-data
-            - name: tz
-              mountPath: /etc/timezone
-              readOnly: true
-            - name: lt
-              mountPath: /etc/localtime
-              readOnly: true
       volumes:
         - name: data
           {{- if .Values.persistence.enabled }}
@@ -64,11 +58,3 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        - name: tz
-          hostPath:
-            path: /etc/timezone
-            type: File
-        - name: lt
-          hostPath:
-            path: /etc/localtime
-            type: File
