@@ -28,6 +28,7 @@ spec:
       enabled: true
       storageClass: "juicefs-oracle"
       size: 100Gi
+    envFromSecret: trilium-secrets
   upgrade:
     strategy:
       name: RetryOnFailure
