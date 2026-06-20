@@ -1,0 +1,17 @@
+image:
+  repository: triliumnext/trilium
+  tag: latest
+
+service:
+  type: NodePort
+  nodePort: 30011
+  port: 8080
+
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  size: 5Gi
+
+nodeSelector: {}
+
+env: []
