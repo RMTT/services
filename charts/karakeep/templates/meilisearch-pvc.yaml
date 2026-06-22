@@ -5,6 +5,7 @@ metadata:
   name: meilisearch-pvc
   annotations:
     helm.sh/resource-policy: keep
+    kustomize.toolkit.fluxcd.io/prune: disabled
 spec:
   accessModes:
     - ReadWriteOnce
