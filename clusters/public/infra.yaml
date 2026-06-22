@@ -4,8 +4,6 @@ metadata:
   name: infra
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: secrets
   interval: 1m0s
   path: ./infra/public
   prune: true
