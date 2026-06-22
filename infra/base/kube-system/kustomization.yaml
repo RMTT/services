@@ -4,3 +4,4 @@ resources:
   - custom-roles.yaml
   - juicefs-csi.yaml
   - nodelocal-dns.yaml
+  - traefik.yaml
