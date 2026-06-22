@@ -22,8 +22,6 @@ spec:
   values:
     nodeSelector:
       topology.kubernetes.io/region: oracle
-    service:
-      nodePort: 30011
     persistence:
       enabled: true
       storageClass: "juicefs-oracle"

@@ -3,8 +3,7 @@ image:
   tag: latest
 
 service:
-  type: NodePort
-  nodePort: 30011
+  type: ClusterIP
   port: 8080
 
 persistence:

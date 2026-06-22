@@ -32,8 +32,6 @@ spec:
       autheliaUrl: https://auth.rmtt.tech
     nodeSelector:
       topology.kubernetes.io/region: oracle
-    service:
-      nodePort: 30002
     persistence:
       enabled: true
       size: 1Gi

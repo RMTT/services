@@ -24,8 +24,6 @@ spec:
   values:
     nodeSelector:
       topology.kubernetes.io/region: oracle
-    service:
-      nodePort: 30010
     persistence:
       enabled: true
       storageClass: "local-path"

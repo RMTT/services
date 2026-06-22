@@ -3,8 +3,7 @@ image:
   tag: enterprise
 
 service:
-  type: NodePort
-  nodePort: 30010
+  type: ClusterIP
   port: 8334
 
 persistence:

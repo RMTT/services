@@ -28,6 +28,6 @@ spec:
   values:
     dashboard:
       service:
-        type: NodePort
+        type: ClusterIP
     controller:
       replicas: 1

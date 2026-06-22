@@ -29,8 +29,6 @@ spec:
       name: RetryOnFailure
       retryInterval: 5m
   values:
-    service:
-      nodePort: 30004
     database:
       size: 5Gi
       storageClassName: local-path

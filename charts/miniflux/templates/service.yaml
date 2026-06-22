@@ -5,7 +5,7 @@ metadata:
   labels:
     app: miniflux
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: miniflux
   ports:
@@ -13,4 +13,3 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: http
-      nodePort: {{ .Values.service.nodePort }}

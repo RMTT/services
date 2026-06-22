@@ -9,5 +9,4 @@ spec:
     - protocol: TCP
       port: 9091
       targetPort: 9091
-      nodePort: {{ .Values.service.nodePort }}
-  type: NodePort
+  type: ClusterIP
