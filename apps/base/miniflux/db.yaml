@@ -3,6 +3,8 @@ kind: Cluster
 metadata:
   name: miniflux-db
   namespace: miniflux
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
 spec:
   instances: 1
   storage:
@@ -36,6 +38,8 @@ kind: ScheduledBackup
 metadata:
   name: miniflux-db-backup
   namespace: miniflux
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
 spec:
   schedule: "0 0 2 * * *"
   backupOwnerReference: self
