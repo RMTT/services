@@ -22,10 +22,9 @@
         "aarch64-darwin"
       ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-    {
-      checks = forAllSystems (system: {
-        git-hooks-check = git-hooks.lib.${system}.run {
+      hooks-git =
+        system:
+        git-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
             sops-encrypted = {
@@ -40,8 +39,8 @@
             };
           };
         };
-      });
-
+    in
+    {
       devShells = forAllSystems (
         system:
         let
@@ -57,7 +56,7 @@
               sops
             ];
             shellHook = ''
-              ${self.checks.${system}.git-hooks-check.shellHook}
+              ${(hooks-git system).shellHook}
             '';
           };
         }
