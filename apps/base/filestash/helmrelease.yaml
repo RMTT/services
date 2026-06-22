@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: filestash
   namespace: filestash
-  annotations:
-    kustomize.toolkit.fluxcd.io/reconcile: disabled
 spec:
   interval: 10m
   chart:
@@ -23,11 +21,11 @@ spec:
       retryInterval: 5m
   values:
     nodeSelector:
-      topology.kubernetes.io/region: oracle
+      beta.kubernetes.io/arch: amd64
     persistence:
       enabled: true
       storageClass: "local-path"
-      size: 5Gi
+      size: 10Gi
   upgrade:
     strategy:
       name: RetryOnFailure
