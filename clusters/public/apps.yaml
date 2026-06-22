@@ -6,7 +6,6 @@ metadata:
 spec:
   dependsOn:
     - name: infra
-    - name: secrets
   interval: 1m0s
   path: ./apps/public
   prune: true
