@@ -6,9 +6,6 @@ metadata:
   namespace: kube-system
 spec:
   interval: 10m
-  dependsOn:
-    - name: cloudnative-pg
-      namespace: operators
   chart:
     spec:
       chart: ./charts/kube-system/custom-roles

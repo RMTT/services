@@ -1,0 +1,19 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: juicefs-oracle
+provisioner: csi.juicefs.com
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+mountOptions:
+  - writeback
+  - cache-size=102400
+  - cache-dir=/var/lib/rancher/k3s/data/jfscache
+  - noatime
+parameters:
+  csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-oracle
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-name: juicefs-secret-oracle
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+  pathPattern: "${.pvc.namespace}-${.pvc.name}"

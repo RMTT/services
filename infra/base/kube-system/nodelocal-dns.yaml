@@ -6,7 +6,6 @@ metadata:
   namespace: kube-system
 spec:
   interval: 10m
-
   chart:
     spec:
       chart: ./charts/kube-system/nodelocal-dns
