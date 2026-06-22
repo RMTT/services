@@ -1,4 +1,5 @@
 .tar.gz
+.pre-commit-config.yaml
 .terraform/
 *.tfstate
 *.tfstate.backup

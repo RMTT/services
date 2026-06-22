@@ -4,3 +4,4 @@ resources:
   - namespace.yaml
   - db.yaml
   - helmrelease.yaml
+  - ingressroute.yaml

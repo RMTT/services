@@ -3,10 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs }:
+    {
+      self,
+      nixpkgs,
+      git-hooks,
+    }:
     let
       systems = [
         "x86_64-linux"
@@ -16,6 +24,24 @@
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
+      checks = forAllSystems (system: {
+        git-hooks-check = git-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            sops-encrypted = {
+              enable = true;
+              name = "sops-encrypted";
+              description = "Verify every YAML under secrets/ (except kustomization.yaml) has a sops metadata block";
+              entry = "${./scripts/check-sops-encrypted.sh}";
+              files = "^secrets/.*\\.ya?ml$";
+              excludes = [ "kustomization\\.ya?ml$" ];
+              language = "system";
+              pass_filenames = true;
+            };
+          };
+        };
+      });
+
       devShells = forAllSystems (
         system:
         let
@@ -27,7 +53,12 @@
               kubectl
               kubectl-cnpg
               fluxcd
+              jq
+              sops
             ];
+            shellHook = ''
+              ${self.checks.${system}.git-hooks-check.shellHook}
+            '';
           };
         }
       );

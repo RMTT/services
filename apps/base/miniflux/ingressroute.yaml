@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: miniflux
+  namespace: miniflux
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`miniflux.rmtt.tech`)
+      kind: Rule
+      services:
+        - name: miniflux
+          port: 8080
+  tls:
+    certResolver: cfresolver

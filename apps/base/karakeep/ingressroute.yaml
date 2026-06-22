@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: karakeep
+  namespace: karakeep
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`karakeep.rmtt.tech`)
+      kind: Rule
+      services:
+        - name: karakeep
+          port: 3000
+  tls:
+    certResolver: cfresolver

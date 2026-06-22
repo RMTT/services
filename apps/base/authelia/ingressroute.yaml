@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: authelia
+  namespace: authelia
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`auth.rmtt.tech`)
+      kind: Rule
+      services:
+        - name: authelia
+          port: 9091
+  tls:
+    certResolver: cfresolver
