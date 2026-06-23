@@ -1,0 +1,96 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gatus
+  namespace: gatus
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: gatus
+      version: 1.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: twin
+        namespace: gatus
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  values:
+    nodeSelector:
+      topology.kubernetes.io/region: oracle
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 65534
+      runAsGroup: 65534
+      readOnlyRootFilesystem: true
+      capabilities:
+        add:
+          - NET_RAW
+    persistence:
+      enabled: true
+      size: 1Gi
+      storageClassName: local-path
+      mountPath: /data
+      annotations:
+        helm.sh/resource-policy: keep
+    config:
+      storage:
+        type: sqlite
+        path: /data/data.db
+      ui:
+        title: Homelab Status
+        header: RMT's Homelab
+        logo: https://avatars.githubusercontent.com/u/20596599
+        link: https://status.rmtt.tech
+        default-sort-by: group
+      endpoints:
+        - name: Oracle
+          group: infra connectivity
+          url: icmp://oracle.infra.rmtt.host
+          interval: 3m
+          conditions:
+            - "[CONNECTED] == true"
+        - name: Homerouter
+          group: infra connectivity
+          url: icmp://homerouter.infra.rmtt.host
+          interval: 3m
+          conditions:
+            - "[CONNECTED] == true"
+        - name: Miniflux
+          group: services
+          url: https://miniflux.rmtt.tech
+          interval: 3m
+          conditions:
+            - "[STATUS] == 200"
+        - name: Auth
+          group: services
+          url: https://auth.rmtt.tech
+          interval: 3m
+          conditions:
+            - "[STATUS] == 200"
+        - name: Karakeep
+          group: services
+          url: https://karakeep.rmtt.tech
+          interval: 3m
+          conditions:
+            - "[STATUS] == 200"
+        - name: Filestash
+          group: services
+          url: https://filestash.rmtt.tech
+          interval: 3m
+          conditions:
+            - "[STATUS] == 200"
+        - name: Trilium
+          group: services
+          url: https://trilium.rmtt.tech
+          interval: 3m
+          conditions:
+            - "[STATUS] == 200"

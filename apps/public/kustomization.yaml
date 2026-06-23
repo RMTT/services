@@ -11,3 +11,4 @@ resources:
   - ../base/karakeep
   - ../base/miniflux
   - ../base/trilium
+  - ../base/gatus
