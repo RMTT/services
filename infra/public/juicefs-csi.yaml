@@ -35,5 +35,8 @@ spec:
         enabled: true
         storageClass: local-path
         size: 10Gi
+        annotations:
+          helm.sh/resource-policy: keep 
       nodeSelector:
-        topology.kubernetes.io/region: oracle
+        node-role.kubernetes.io/control-plane: "true"
+
