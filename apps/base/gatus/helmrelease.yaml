@@ -58,6 +58,12 @@ spec:
           interval: 3m
           conditions:
             - "[CONNECTED] == true"
+        - name: Cn2-box
+          group: infra connectivity
+          url: icmp://cn2-box.infra.rmtt.host
+          interval: 3m
+          conditions:
+            - "[CONNECTED] == true"
         - name: Homerouter
           group: infra connectivity
           url: icmp://homerouter.infra.rmtt.host

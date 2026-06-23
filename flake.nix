@@ -30,9 +30,9 @@
             sops-encrypted = {
               enable = true;
               name = "sops-encrypted";
-              description = "Verify every YAML under secrets/ (except kustomization.yaml) has a sops metadata block";
+              description = "Verify every file under secrets/ (except kustomization.yaml) has a sops metadata block";
               entry = "${./scripts/check-sops-encrypted.sh}";
-              files = "^secrets/.*\\.ya?ml$";
+              files = "(^|/)secrets/.+$";
               excludes = [ "kustomization\\.ya?ml$" ];
               language = "system";
               pass_filenames = true;

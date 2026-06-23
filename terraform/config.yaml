@@ -10,6 +10,7 @@ tunnels:
       karakeep: {}
       trilium: {}
       filestash: {}
+      status: {}
 
 # LAN-only -> adguard rewrite only; no public DNS
 # Public host A records -> Cloudflare A + adguard
