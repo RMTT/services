@@ -23,8 +23,6 @@ hosts:
       k3s-master.infra: 198.19.20.1
       homerouter.infra: 198.19.19.1
       homerouter.home: 192.168.6.1
-      homeserver.infra: 198.19.19.2
-      homeserver-vpro.infra: 198.19.19.3
       cn2-box.infra: 198.19.20.2
       cn2-box: 104.194.71.122
       oracle: 147.224.201.181

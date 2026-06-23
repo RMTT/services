@@ -65,15 +65,6 @@ locals {
   ])...)
 
   adguard_dns = merge(local.public_dns, local.private_dns)
-
-  import_tunnel_dns = {
-    for k, v in local.tunnel_dns : k => v
-    if contains(keys(local.cf_ids), k)
-  }
-  import_public_dns = {
-    for k, v in local.public_dns : k => v
-    if contains(keys(local.cf_ids), k)
-  }
 }
 
 # just overwrite dns value for adguard
@@ -85,14 +76,14 @@ resource "adguard_rewrite" "dynamic" {
 }
 
 import {
-  for_each = local.import_public_dns
+  for_each = local.public_dns
 
   to = cloudflare_dns_record.dynamic[each.key]
   id = "${local.zone_lookup[each.value.zone]}/${local.cf_ids[each.key]}"
 }
 
 import {
-  for_each = local.import_tunnel_dns
+  for_each = local.tunnel_dns
 
   to = cloudflare_dns_record.tunnel[each.key]
   id = "${local.zone_lookup[each.value.zone]}/${local.cf_ids[each.key]}"
