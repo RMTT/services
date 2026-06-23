@@ -13,4 +13,6 @@ persistence:
 
 nodeSelector: {}
 
+envFrom: []
+
 env: []
