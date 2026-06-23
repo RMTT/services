@@ -6,5 +6,5 @@ provisioner: rancher.io/local-path
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Retain
 parameters:
-  nodePath: /var/lib/rancher/k3s/local-storage
+  nodePath: /var/lib/rancher/k3s/storage
   pathPattern: "{{ .PVC.Namespace }}/{{ .PVC.Name }}/"
