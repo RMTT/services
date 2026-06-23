@@ -26,6 +26,8 @@ spec:
       enabled: true
       storageClass: "juicefs-oracle"
       size: 100Gi
+      annotations:
+        helm.sh/resource-policy: keep
   upgrade:
     strategy:
       name: RetryOnFailure

@@ -1,0 +1,26 @@
+nodeSelector: {}
+
+persistence:
+  enabled: true
+  size: 1Gi
+  storageClassName: local-path
+  annotations:
+    helm.sh/resource-policy: keep
+
+config:
+  domain: ""
+  autheliaUrl: ""
+
+secrets:
+  jwtSecret: ""
+  sessionSecret: ""
+  storageEncryptionKey: ""
+  smtpAddress: ""
+  smtpUsername: ""
+  smtpPassword: ""
+  smtpSender: ""
+  oidcHmacSecret: ""
+  oidcJwksKey: ""
+
+oidcClients: []
+users: ""

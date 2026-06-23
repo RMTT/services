@@ -3,8 +3,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: trilium-pvc
+  {{- with .Values.persistence.annotations }}
   annotations:
-    helm.sh/resource-policy: keep
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   accessModes:
     - ReadWriteOnce

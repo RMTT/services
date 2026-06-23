@@ -36,6 +36,8 @@ spec:
       enabled: true
       size: 1Gi
       storageClassName: local-path
+      annotations:
+        helm.sh/resource-policy: keep
   upgrade:
     strategy:
       name: RetryOnFailure

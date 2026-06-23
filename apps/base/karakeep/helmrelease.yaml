@@ -30,9 +30,13 @@ spec:
             enabled: true
             size: 50Gi
             storageClass: "juicefs-oracle"
+            annotations:
+                helm.sh/resource-policy: keep
         meilisearch:
             enabled: true
             size: 10Gi
+            annotations:
+                helm.sh/resource-policy: keep
   install:
     createNamespace: true
     strategy:
