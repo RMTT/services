@@ -27,7 +27,7 @@ spec:
           name: filestash-secrets
     persistence:
       enabled: true
-      storageClass: "local-path"
+      storageClass: local-storage
       size: 10Gi
   upgrade:
     strategy:
