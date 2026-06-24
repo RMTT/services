@@ -13,6 +13,9 @@ spec:
     metadata:
       labels:
         app: authelia
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/secret-config.yaml") . | sha256sum }}
+        checksum/users: {{ include (print $.Template.BasePath "/secret-users.yaml") . | sha256sum }}
     spec:
       enableServiceLinks: false
       {{- with .Values.nodeSelector }}
