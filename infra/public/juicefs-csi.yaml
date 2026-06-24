@@ -53,11 +53,11 @@ spec:
       valuesKey: values.yaml
   chart:
     spec:
-      chart: juicefs-csi
+      chart: juicefs-s3-gateway
       version: 0.11.4
       sourceRef:
         kind: HelmRepository
-        name: juicefs
+        name: juicefs-csi
         namespace: kube-system
   install:
     strategy:
