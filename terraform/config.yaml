@@ -9,7 +9,7 @@ tunnels:
       miniflux: {}
       karakeep: {}
       trilium: {}
-      filestash: {}
+      alist: {}
       status: {}
 
 # LAN-only -> adguard rewrite only; no public DNS
