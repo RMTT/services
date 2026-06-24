@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,6 +14,7 @@
     {
       self,
       nixpkgs,
+      flake-utils,
       git-hooks,
     }:
     let
@@ -21,45 +23,28 @@
         "aarch64-linux"
         "aarch64-darwin"
       ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-      hooks-git =
-        system:
-        git-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            sops-encrypted = {
-              enable = true;
-              name = "sops-encrypted";
-              description = "Verify every file under secrets/ (except kustomization.yaml) has a sops metadata block";
-              entry = "${./scripts/check-sops-encrypted.sh}";
-              files = "(^|/)secrets/.+$";
-              excludes = [ "kustomization\\.ya?ml$" ];
-              language = "system";
-              pass_filenames = true;
-            };
-          };
-        };
     in
-    {
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        {
-          default = pkgs.mkShellNoCC {
-            packages = with pkgs; [
-              kubectl
-              kubectl-cnpg
-              fluxcd
-              jq
-              sops
-            ];
-            shellHook = ''
-              ${(hooks-git system).shellHook}
-            '';
-          };
-        }
-      );
-    };
+    flake-utils.lib.eachSystem systems (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+        git-hooks-check = import ./git-hooks.nix { inherit pkgs git-hooks; };
+      in
+      {
+        checks = {
+          pre-commit-check = git-hooks-check;
+        };
+
+        devShells.default = pkgs.mkShellNoCC {
+          packages = with pkgs; [
+            kubectl
+            kubectl-cnpg
+            fluxcd
+            jq
+            sops
+          ];
+          shellHook = git-hooks-check.shellHook;
+        };
+      }
+    );
 }
