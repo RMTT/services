@@ -22,9 +22,6 @@ spec:
   values:
     nodeSelector:
       beta.kubernetes.io/arch: amd64
-    envFrom:
-      - secretRef:
-          name: filestash-secrets
     persistence:
       enabled: true
       storageClass: local-storage
