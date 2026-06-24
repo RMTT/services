@@ -6,7 +6,6 @@ resources:
   - ../../secrets/miniflux
 
   - ../base/authelia
-  - ../base/filestash
   - ../base/karakeep
   - ../base/miniflux
   - ../base/trilium

@@ -88,12 +88,6 @@ spec:
           interval: 3m
           conditions:
             - "[STATUS] == 200"
-        - name: Filestash
-          group: services
-          url: https://filestash.rmtt.tech
-          interval: 3m
-          conditions:
-            - "[STATUS] == 200"
         - name: Trilium
           group: services
           url: https://trilium.rmtt.tech
