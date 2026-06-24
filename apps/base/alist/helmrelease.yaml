@@ -1,0 +1,30 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alist
+  namespace: alist
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: ./charts/alist
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  values:
+    nodeSelector:
+      topology.kubernetes.io/region: oracle
+    persistence:
+      storageClass: "local-storage"
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m

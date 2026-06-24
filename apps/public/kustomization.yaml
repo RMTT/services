@@ -10,3 +10,5 @@ resources:
   - ../base/miniflux
   - ../base/trilium
   - ../base/gatus
+  - ../base/alist
+

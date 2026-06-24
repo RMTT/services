@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: alist
+  namespace: alist
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`alist.rmtt.tech`)
+      kind: Rule
+      services:
+        - name: alist
+          port: 5244
+  tls:
+    certResolver: cfresolver

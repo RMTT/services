@@ -1,0 +1,14 @@
+service:
+  type: ClusterIP
+  port: 5244
+
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  size: 5Gi
+  annotations:
+    helm.sh/resource-policy: keep
+
+nodeSelector: {}
+
+env: []
