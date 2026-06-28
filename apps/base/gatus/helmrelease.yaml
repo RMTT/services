@@ -70,6 +70,12 @@ spec:
           interval: 3m
           conditions:
             - "[CONNECTED] == true"
+        - name: Kube-runner
+          group: infra connectivity
+          url: icmp://Kube-runner.infra.rmtt.host
+          interval: 3m
+          conditions:
+            - "[CONNECTED] == true"
         - name: Miniflux
           group: services
           url: https://miniflux.rmtt.tech
