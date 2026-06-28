@@ -28,3 +28,5 @@ hosts:
       cn2-box: 104.194.71.122
       oracle: 147.224.201.181
       oracle.infra: 198.19.20.1
+      kube-runner: 147.224.143.231
+      kube-runner.infra: 198.19.20.3
