@@ -52,25 +52,19 @@ spec:
         link: https://status.rmtt.tech
         default-sort-by: group
       endpoints:
-        - name: Oracle
+        - name: oracle
           group: infra connectivity
           url: icmp://oracle.infra.rmtt.host
           interval: 3m
           conditions:
             - "[CONNECTED] == true"
-        - name: Cn2-box
-          group: infra connectivity
-          url: icmp://cn2-box.infra.rmtt.host
-          interval: 3m
-          conditions:
-            - "[CONNECTED] == true"
-        - name: Homerouter
+        - name: homerouter
           group: infra connectivity
           url: icmp://homerouter.infra.rmtt.host
           interval: 3m
           conditions:
             - "[CONNECTED] == true"
-        - name: Kube-runner
+        - name: kube-runner
           group: infra connectivity
           url: icmp://Kube-runner.infra.rmtt.host
           interval: 3m
