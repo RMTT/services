@@ -23,7 +23,7 @@ spec:
     nodeSelector:
       topology.kubernetes.io/region: oracle
     persistence:
-      storageClass: "local-storage"
+      storageClass: juicefs-oracle
   upgrade:
     strategy:
       name: RetryOnFailure
