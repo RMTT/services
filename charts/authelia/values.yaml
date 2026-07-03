@@ -30,3 +30,5 @@ secrets:
   oidcJwksKey: ""
 
 oidcClients: []
+
+oidcAuthorizationPolicies: {}

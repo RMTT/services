@@ -47,24 +47,15 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
           volumeMounts:
-            - name: config
-              mountPath: /config
             - name: config-file
               mountPath: /config/configuration.yml
               subPath: configuration.yml
               readOnly: true
-            - name: data
-              mountPath: /data
             - name: tmp
               mountPath: /tmp
       volumes:
-        - name: config
-          emptyDir: {}
         - name: config-file
           secret:
             secretName: authelia-config
-        - name: data
-          persistentVolumeClaim:
-            claimName: authelia-pvc
         - name: tmp
           emptyDir: {}
