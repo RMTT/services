@@ -1,0 +1,13 @@
+service:
+  type: ClusterIP
+  httpPort: 17170
+  ldapPort: 3890
+
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  size: 1Gi
+
+nodeSelector: {}
+
+env: []

@@ -4,6 +4,7 @@ resources:
   - ../../secrets/authelia
   - ../../secrets/karakeep
   - ../../secrets/miniflux
+  - ../../secrets/lldap
 
   - ../base/authelia
   - ../base/karakeep
@@ -11,4 +12,5 @@ resources:
   - ../base/trilium
   - ../base/gatus
   - ../base/alist
+  - ../base/lldap
 

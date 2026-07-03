@@ -1,0 +1,35 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lldap
+  namespace: lldap
+spec:
+  interval: 10m
+  valuesFrom:
+    - kind: Secret
+      name: helm-values
+      valuesKey: values.yaml
+  chart:
+    spec:
+      chart: ./charts/lldap
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
+  values:
+    nodeSelector:
+      topology.kubernetes.io/region: oracle
+    persistence:
+      storageClass: juicefs-oracle
+      size: 1Gi
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
