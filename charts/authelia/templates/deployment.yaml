@@ -15,7 +15,6 @@ spec:
         app: authelia
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/secret-config.yaml") . | sha256sum }}
-        checksum/users: {{ include (print $.Template.BasePath "/secret-users.yaml") . | sha256sum }}
     spec:
       enableServiceLinks: false
       {{- with .Values.nodeSelector }}
@@ -54,9 +53,6 @@ spec:
               mountPath: /config/configuration.yml
               subPath: configuration.yml
               readOnly: true
-            - name: authelia-users
-              mountPath: /config/users
-              readOnly: true
             - name: data
               mountPath: /data
             - name: tmp
@@ -67,9 +63,6 @@ spec:
         - name: config-file
           secret:
             secretName: authelia-config
-        - name: authelia-users
-          secret:
-            secretName: authelia-users
         - name: data
           persistentVolumeClaim:
             claimName: authelia-pvc

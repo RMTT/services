@@ -11,6 +11,13 @@ config:
   domain: ""
   autheliaUrl: ""
 
+ldap:
+  implementation: 'lldap'
+  address: 'ldap://lldap.lldap.svc.cluster.local:3890'
+  base_dn: ""
+  user: ""
+  password: ""
+
 secrets:
   jwtSecret: ""
   sessionSecret: ""
@@ -23,4 +30,3 @@ secrets:
   oidcJwksKey: ""
 
 oidcClients: []
-users: ""
