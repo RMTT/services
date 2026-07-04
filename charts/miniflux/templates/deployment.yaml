@@ -49,7 +49,10 @@ spec:
             - name: OAUTH2_PROVIDER
               value: "oidc"
             - name: OAUTH2_CLIENT_ID
-              value: "miniflux"
+              valueFrom:
+                secretKeyRef:
+                  name: miniflux-secrets
+                  key: oidc-client-id
             - name: OAUTH2_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
