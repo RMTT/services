@@ -61,7 +61,7 @@ spec:
             - name: OAUTH2_OIDC_DISCOVERY_ENDPOINT
               value: "https://auth.rmtt.tech"
             - name: OAUTH2_OIDC_PROVIDER_NAME
-              value: "Authelia"
+              value: "Pocket-id"
             - name: OAUTH2_REDIRECT_URL
               value: "https://miniflux.rmtt.tech/oauth2/oidc/callback"
             - name: OAUTH2_USER_CREATION
