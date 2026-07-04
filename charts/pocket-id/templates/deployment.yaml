@@ -1,62 +1,62 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lldap
+  name: pocket-id
   labels:
-    app: lldap
+    app: pocket-id
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: lldap
+      app: pocket-id
   template:
     metadata:
       labels:
-        app: lldap
+        app: pocket-id
     spec:
-      enableServiceLinks: false
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
-        - name: lldap
-          image: "lldap/lldap:{{ .Chart.AppVersion }}"
+        - name: pocket-id
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           ports:
             - name: http
-              containerPort: {{ .Values.service.httpPort }}
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
-            - name: ldap
-              containerPort: {{ .Values.service.ldapPort }}
-              protocol: TCP
-          {{- with .Values.env }}
           env:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+            - name: PORT
+              value: "{{ .Values.service.port }}"
+            - name: APP_URL
+              value: "{{ .Values.appUrl }}"
+            {{- if .Values.env }}
+            {{- toYaml .Values.env | nindent 12 }}
+            {{- end }}
           livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: http
             initialDelaySeconds: 15
             periodSeconds: 20
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: http
             initialDelaySeconds: 10
             periodSeconds: 10
             timeoutSeconds: 5
           volumeMounts:
             - name: data
-              mountPath: /data
+              mountPath: /app/data
       volumes:
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: lldap-pvc
+            claimName: pocket-id-pvc
           {{- else }}
           emptyDir: {}
           {{- end }}

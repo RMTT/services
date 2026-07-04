@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: lldap-pvc
+  name: pocket-id-pvc
   annotations:
     helm.sh/resource-policy: keep
 spec:

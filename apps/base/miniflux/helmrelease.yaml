@@ -9,8 +9,6 @@ spec:
   dependsOn:
     - name: cloudnative-pg
       namespace: operators
-    - name: authelia
-      namespace: authelia
   valuesFrom:
     - kind: Secret
       name: helm-values
