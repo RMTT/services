@@ -42,6 +42,8 @@ spec:
         nodePort: 443
     service:
       type: NodePort
+      spec:
+        externalTrafficPolicy: Local
     envFrom:
       - secretRef:
           name: traefik-env
