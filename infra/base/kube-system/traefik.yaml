@@ -38,8 +38,18 @@ spec:
     ports:
       web:
         nodePort: 80
+        forwardedHeaders:
+          insecure: false 
+          trustedIPs:
+            - "10.42.0.0/16"
+            - "100.64.0.0/10"
       websecure:
         nodePort: 443
+        forwardedHeaders:
+          insecure: false 
+          trustedIPs:
+            - "10.42.0.0/16"
+            - "100.64.0.0/10"
     service:
       spec:
         type: NodePort
