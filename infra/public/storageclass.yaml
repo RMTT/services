@@ -10,6 +10,7 @@ mountOptions:
   - writeback
   - cache-size=102400
   - cache-dir=/var/lib/rancher/k3s/data/jfscache
+  - free-space-ratio=0.1
   - noatime
 parameters:
   # use secrets generated via juicefs-s3-gateway
