@@ -51,7 +51,7 @@ This stops the kustomize-controller from pruning the Namespace, preventing the c
 
 When creating a PostgreSQL database, use cloudnative-pg and ensure a scheduled backup for the cluster is created by default:
 
-- Schedule the backup at 2am and keep 30 days of data.
+- Schedule the backup at 2am and keep 7 days of data.
 - Enable WAL archiving.
 - Create a secret named `cnpg-s3` for the S3 credentials (with keys `cnpg-s3-id`, `cnpg-s3-key`, and `region`) in the file `cnpg-s3.yaml`.
 - Protect the `Cluster` and `ScheduledBackup` with `kustomize.toolkit.fluxcd.io/prune: disabled` (see [Protecting Persistent Data](#protecting-persistent-data-across-app-removal)).

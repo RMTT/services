@@ -18,7 +18,7 @@ spec:
     nodeSelector:
       topology.kubernetes.io/region: oracle
   backup:
-    retentionPolicy: "30d"
+    retentionPolicy: "7d"
     barmanObjectStore:
       destinationPath: s3://mts-postgresql-backup/miniflux-db
       endpointURL: https://s3.us-east-005.backblazeb2.com
