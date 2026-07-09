@@ -31,3 +31,6 @@ spec:
         type: ClusterIP
     controller:
       replicas: 1
+      metricsPort: "9567"
+    node:
+      metricsPort: "9567"

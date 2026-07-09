@@ -8,5 +8,5 @@ resources:
   - ../base/kube-system
   - ../base/operators
 
-  - juicefs-csi.yaml
+  - juicefs-csi-instance.yaml
   - storageclass.yaml
