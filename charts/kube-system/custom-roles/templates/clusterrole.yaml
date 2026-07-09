@@ -25,3 +25,6 @@ rules:
   verbs: ["get", "list", "watch"]
 - nonResourceURLs: ["/metrics", "/metrics/cadvisor"]
   verbs: ["get"]
+- apiGroups: [""]
+  resources: ["pods/proxy"]
+  verbs: ["get"]
