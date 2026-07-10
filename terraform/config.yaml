@@ -10,6 +10,7 @@ tunnels:
       karakeep: {}
       alist: {}
       status: {}
+      affine: {}
 
 # LAN-only -> adguard rewrite only; no public DNS
 # Public host A records -> Cloudflare A + adguard
