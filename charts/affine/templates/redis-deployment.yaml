@@ -21,6 +21,7 @@ spec:
       containers:
         - name: redis
           image: redis:7-alpine
+          args: ["--appendonly", "yes"]
           ports:
             - name: redis
               containerPort: 6379
@@ -45,3 +46,15 @@ spec:
                 - ping
             initialDelaySeconds: 5
             periodSeconds: 5
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+      volumes:
+        - name: redis-data
+          {{- if .Values.redis.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-redis-pvc
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+

@@ -21,4 +21,10 @@ database:
   name: "affine"
   secretName: "affine-db-app"
 
+redis:
+  persistence:
+    enabled: true
+    storageClass: "local-path"
+    size: 2Gi
+
 env: []

@@ -34,6 +34,11 @@ spec:
       port: 5432
       name: "affine"
       secretName: "affine-db-app"
+    redis:
+      persistence:
+        enabled: true
+        storageClass: "local-path"
+        size: 2Gi
   upgrade:
     strategy:
       name: RetryOnFailure
