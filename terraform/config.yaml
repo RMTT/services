@@ -8,7 +8,6 @@ tunnels:
       auth: {}
       miniflux: {}
       karakeep: {}
-      trilium: {}
       alist: {}
       status: {}
 

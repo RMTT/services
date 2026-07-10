@@ -10,5 +10,4 @@ resources:
   - ../base/karakeep
   - ../base/miniflux
   - ../base/pocket-id
-  - ../base/trilium
 
