@@ -1,13 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../secrets/affine
   - ../../secrets/karakeep
   - ../../secrets/miniflux
   - ../../secrets/pocket-id
 
   - ../base/alist
-  - ../base/affine
   - ../base/gatus
   - ../base/karakeep
   - ../base/miniflux
