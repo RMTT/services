@@ -1,0 +1,24 @@
+image:
+  repository: ghcr.io/toeverything/affine
+  tag: ""
+
+service:
+  type: ClusterIP
+  port: 3010
+
+persistence:
+  enabled: true
+  storageClass: "juicefs-oracle"
+  size: 10Gi
+
+nodeSelector: {}
+
+externalUrl: "https://affine.rmtt.tech"
+
+database:
+  host: "affine-db-rw"
+  port: 5432
+  name: "affine"
+  secretName: "affine-db-app"
+
+env: []

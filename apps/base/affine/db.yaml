@@ -1,0 +1,68 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: affine-db
+  namespace: affine
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  postgresql:
+    extensions:
+      - name: pgvector
+        image:
+          reference: ghcr.io/cloudnative-pg/pgvector:0.8.4-18-bookworm
+  storage:
+    storageClass: local-path
+    size: 5Gi
+  bootstrap:
+    initdb:
+      database: affine
+      owner: affine
+  affinity:
+    nodeSelector:
+      topology.kubernetes.io/region: oracle
+  backup:
+    retentionPolicy: "7d"
+    barmanObjectStore:
+      destinationPath: s3://mts-postgresql-backup/affine-db
+      endpointURL: https://s3.us-east-005.backblazeb2.com
+      wal:
+        compression: gzip
+        encryption: AES256
+      s3Credentials:
+        accessKeyId:
+          name: cnpg-s3
+          key: cnpg-s3-id
+        secretAccessKey:
+          name: cnpg-s3
+          key: cnpg-s3-key
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: affine-database
+  namespace: affine
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  name: affine
+  owner: affine
+  cluster:
+    name: affine-db
+  extensions:
+    - name: vector
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: affine-db-backup
+  namespace: affine
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  schedule: "0 0 2 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: affine-db
