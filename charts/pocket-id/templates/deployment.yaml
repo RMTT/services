@@ -22,7 +22,7 @@ spec:
       {{- end }}
       containers:
         - name: pocket-id
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "ghcr.io/pocket-id/pocket-id:{{ .Chart.AppVersion }}"
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

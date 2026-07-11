@@ -35,7 +35,7 @@ spec:
       {{- end }}
       containers:
         - name: node-cache
-          image: {{ .Values.image }}
+          image: "registry.k8s.io/dns/k8s-dns-node-cache:{{ .Chart.AppVersion }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           args:

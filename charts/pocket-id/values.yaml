@@ -1,7 +1,3 @@
-image:
-  repository: ghcr.io/pocket-id/pocket-id
-  tag: ""
-
 service:
   type: ClusterIP
   port: 1411

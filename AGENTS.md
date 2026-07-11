@@ -55,3 +55,11 @@ When creating a PostgreSQL database, use cloudnative-pg and ensure a scheduled b
 - Enable WAL archiving.
 - Create a secret named `cnpg-s3` for the S3 credentials (with keys `cnpg-s3-id`, `cnpg-s3-key`, and `region`) in the file `cnpg-s3.yaml`.
 - Protect the `Cluster` and `ScheduledBackup` with `kustomize.toolkit.fluxcd.io/prune: disabled` (see [Protecting Persistent Data](#protecting-persistent-data-across-app-removal)).
+
+## 2. Custom Helm Charts
+
+When creating or modifying custom Helm charts in the `charts/` directory:
+
+- **Image Repositories**: Hardcode the image repository directly in the template manifest (e.g. `deployment.yaml` or `daemonset.yaml`), instead of parameterizing it in `values.yaml`.
+- **Image Tags**: Use the chart's `appVersion` from `Chart.yaml` as the container image tag via `{{ .Chart.AppVersion }}` in the template. Do not define or use an `image.tag` value in `values.yaml`.
+
