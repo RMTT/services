@@ -11,13 +11,18 @@ tunnels:
       alist: {}
       status: {}
 
-# LAN-only -> adguard rewrite only; no public DNS
-# Public host A records -> Cloudflare A + adguard
+# Private host records -> Bind server
+# Public host records -> Cloudflare + Bind server
 hosts:
   private:
     rmtt.tech:
       status: 198.19.20.1
       oracle.proxy: 198.19.20.1
+      auth: 198.19.20.1
+      miniflux: 198.19.20.1
+      karakeep: 198.19.20.1
+      status: 198.19.20.1
+      alist: 198.19.20.1
   public:
     rmtt.host:
       k3s-master.infra: 198.19.20.1

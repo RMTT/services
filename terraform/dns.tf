@@ -18,16 +18,6 @@ locals {
     }
   ]...)
 
-  # LAN-only -> adguard only
-  adguard_dns = merge(
-    { for fqdn, r in local.public_dns : fqdn => r.content },
-    merge([
-      for zone, entries in local.cfg.hosts.private : {
-        for label, ip in entries : "${label}.${zone}" => ip
-      }
-    ]...)
-  )
-
   # All DNS records defined in config
   config_cf_dns = merge(local.public_dns, local.tunnel_dns)
 
@@ -45,21 +35,43 @@ locals {
       }
     }
   ]...)
+
+  # LAN Only
+  dns_records = merge(
+    {
+      for fqdn, r in local.public_dns : fqdn => {
+        name      = r.name
+        zone      = "${r.zone}."
+        addresses = [r.content]
+      }
+    },
+    merge([
+      for zone, entries in local.cfg.hosts.private : {
+        for label, ip in entries : "${label}.${zone}" => {
+          name      = label
+          zone      = "${zone}."
+          addresses = [ip]
+        }
+      }
+    ]...)
+  )
 }
 
 import {
-  for_each = var.import ? local.adguard_dns : {}
+  for_each = var.import ? local.dns_records : {}
 
-  to = adguard_rewrite.dynamic[each.key]
-  id = "${each.key}||${each.value}"
+  to = dns_a_record_set.dynamic[each.key]
+  id = "${each.key}."
 }
 
-# just overwrite dns value for adguard
-resource "adguard_rewrite" "dynamic" {
-  for_each = local.adguard_dns
+# DNS A records using dns provider
+resource "dns_a_record_set" "dynamic" {
+  for_each = local.dns_records
 
-  domain = each.key
-  answer = each.value
+  zone      = each.value.zone
+  name      = each.value.name
+  addresses = each.value.addresses
+  ttl       = 300
 }
 
 data "cloudflare_dns_records" "all_dns_records" {

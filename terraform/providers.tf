@@ -4,9 +4,9 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 5"
     }
-    adguard = {
-      source  = "gmichels/adguard"
-      version = "~> 1.7.0"
+    dns = {
+      source  = "hashicorp/dns"
+      version = "~> 3.4"
     }
     sops = {
       source  = "carlpett/sops"
@@ -30,10 +30,11 @@ provider "cloudflare" {
   api_token = data.sops_file.secrets.data["CLOUDFLARE_API_TOKEN"]
 }
 
-provider "adguard" {
-  host     = "homerouter.java-crocodile.ts.net:3000"
-  username = data.sops_file.secrets.data["adguard_username"]
-  password = data.sops_file.secrets.data["adguard_password"]
-  scheme   = "http"
-  insecure = false
+provider "dns" {
+  update {
+    server        = "oracle.infra.rmtt.host"
+    key_name      = "terraform-key."
+    key_algorithm = "hmac-sha256"
+    key_secret    = data.sops_file.secrets.data["bind_terraform_key"]
+  }
 }
