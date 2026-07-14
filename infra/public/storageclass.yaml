@@ -14,9 +14,8 @@ mountOptions:
   - io-retries=5
   - noatime
 parameters:
-  # use secrets generated via juicefs-s3-gateway
-  csi.storage.k8s.io/provisioner-secret-name: juicefs-secret
+  csi.storage.k8s.io/provisioner-secret-name: juicefs-secret-oracle
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
-  csi.storage.k8s.io/node-publish-secret-name: juicefs-secret
+  csi.storage.k8s.io/node-publish-secret-name: juicefs-secret-oracle
   csi.storage.k8s.io/node-publish-secret-namespace: kube-system
   pathPattern: "${.pvc.namespace}-${.pvc.name}"
