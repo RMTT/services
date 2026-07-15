@@ -26,6 +26,10 @@ spec:
               value: http://chrome:9222
             - name: DATA_DIR
               value: /data
+            {{- if .Values.persistence.assets.enabled }}
+            - name: ASSETS_DIR
+              value: /assets
+            {{- end }}
             - name: NEXTAUTH_URL
               value: "https://karakeep.rmtt.tech"
             - name: MEILI_ADDR
@@ -95,7 +99,16 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
+            {{- if .Values.persistence.assets.enabled }}
+            - mountPath: /assets
+              name: assets
+            {{- end }}
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: karakeep-pvc
+        {{- if .Values.persistence.assets.enabled }}
+        - name: assets
+          persistentVolumeClaim:
+            claimName: karakeep-assets-pvc
+        {{- end }}

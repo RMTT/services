@@ -11,6 +11,12 @@ persistence:
     # storageClass: ""
     annotations:
       helm.sh/resource-policy: keep
+  assets:
+    enabled: true
+    size: 5Gi
+    # storageClass: ""
+    annotations:
+      helm.sh/resource-policy: keep
   meilisearch:
     enabled: true
     size: 5Gi

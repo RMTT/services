@@ -1,0 +1,19 @@
+{{- if .Values.persistence.assets.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: karakeep-assets-pvc
+  {{- with .Values.persistence.assets.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.persistence.assets.size | quote }}
+  {{- if .Values.persistence.assets.storageClass }}
+  storageClassName: {{ .Values.persistence.assets.storageClass | quote }}
+  {{- end }}
+{{- end }}

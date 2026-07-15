@@ -25,6 +25,12 @@ spec:
     persistence:
         karakeep:
             enabled: true
+            size: 5Gi
+            storageClass: "local-storage"
+            annotations:
+                helm.sh/resource-policy: keep
+        assets:
+            enabled: true
             size: 50Gi
             storageClass: "juicefs-oracle"
             annotations:
