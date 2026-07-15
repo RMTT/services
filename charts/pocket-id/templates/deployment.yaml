@@ -45,7 +45,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.database.secretName }}
                   key: password
-            - name: POSTGRES_CONNECTION_STRING
+            - name: DB_CONNECTION_STRING
               value: "postgres://$(DB_USER):$(DB_PASSWORD)@{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}?sslmode=disable"
             {{- end }}
             {{- if .Values.env }}
