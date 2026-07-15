@@ -38,7 +38,7 @@ spec:
       name: pocket-id
     persistence:
       enabled: true
-      storageClass: juicefs-storage
+      storageClass: local-storage
       size: 1Gi
   upgrade:
     strategy:
