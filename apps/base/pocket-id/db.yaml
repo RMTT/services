@@ -8,7 +8,7 @@ metadata:
 spec:
   instances: 1
   storage:
-    storageClass: local-path
+    storageClass: local-storage
     size: 5Gi
   bootstrap:
     initdb:
