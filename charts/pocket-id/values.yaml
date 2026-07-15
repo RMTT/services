@@ -11,4 +11,11 @@ nodeSelector: {}
 
 appUrl: "https://auth.rmtt.tech"
 
+database:
+  enabled: false
+  secretName: pocket-id-db-app
+  host: pocket-id-db-rw
+  port: 5432
+  name: pocket-id
+
 env: []

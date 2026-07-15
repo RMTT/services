@@ -1,0 +1,47 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pocket-id-db
+  namespace: pocket-id
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  instances: 1
+  storage:
+    storageClass: local-path
+    size: 5Gi
+  bootstrap:
+    initdb:
+      database: pocket-id
+      owner: pocket-id
+  affinity:
+    nodeSelector:
+      topology.kubernetes.io/region: oracle
+  backup:
+    retentionPolicy: "7d"
+    barmanObjectStore:
+      destinationPath: s3://mts-postgresql-backup/pocket-id-db
+      endpointURL: https://s3.us-east-005.backblazeb2.com
+      wal:
+        compression: gzip
+        encryption: AES256
+      s3Credentials:
+        accessKeyId:
+          name: cnpg-s3
+          key: cnpg-s3-id
+        secretAccessKey:
+          name: cnpg-s3
+          key: cnpg-s3-key
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: pocket-id-db-backup
+  namespace: pocket-id
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  schedule: "0 0 2 * * *"
+  backupOwnerReference: self
+  cluster:
+    name: pocket-id-db

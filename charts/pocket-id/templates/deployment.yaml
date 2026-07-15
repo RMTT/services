@@ -32,6 +32,22 @@ spec:
               value: "{{ .Values.service.port }}"
             - name: APP_URL
               value: "{{ .Values.appUrl }}"
+            {{- if .Values.database.enabled }}
+            - name: DB_PROVIDER
+              value: "postgres"
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.secretName }}
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.secretName }}
+                  key: password
+            - name: POSTGRES_CONNECTION_STRING
+              value: "postgres://$(DB_USER):$(DB_PASSWORD)@{{ .Values.database.host }}:{{ .Values.database.port }}/{{ .Values.database.name }}?sslmode=disable"
+            {{- end }}
             {{- if .Values.env }}
             {{- toYaml .Values.env | nindent 12 }}
             {{- end }}

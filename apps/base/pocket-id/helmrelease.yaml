@@ -6,6 +6,9 @@ metadata:
   namespace: pocket-id
 spec:
   interval: 10m
+  dependsOn:
+    - name: cloudnative-pg
+      namespace: operators
   valuesFrom:
     - kind: Secret
       name: helm-values
@@ -27,8 +30,15 @@ spec:
     appUrl: "https://auth.rmtt.tech"
     nodeSelector:
       topology.kubernetes.io/region: oracle
+    database:
+      enabled: true
+      secretName: pocket-id-db-app
+      host: pocket-id-db-rw
+      port: 5432
+      name: pocket-id
     persistence:
-      storageClass: juicefs-oracle
+      enabled: true
+      storageClass: juicefs-storage
       size: 1Gi
   upgrade:
     strategy:
