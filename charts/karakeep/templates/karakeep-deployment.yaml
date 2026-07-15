@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: karakeep-web
+      annotations:
+        checksum/config: {{ .Values | toYaml | sha256sum }}
     spec:
       {{- with .Values.nodeSelector }}
       nodeSelector:
