@@ -24,6 +24,10 @@ spec:
       topology.kubernetes.io/region: oracle
     persistence:
       storageClass: juicefs-oracle
+      db:
+        enabled: true
+        storageClass: "local-storage"
+        size: 5Gi
   upgrade:
     strategy:
       name: RetryOnFailure

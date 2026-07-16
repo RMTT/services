@@ -8,6 +8,12 @@ persistence:
   size: 5Gi
   annotations:
     helm.sh/resource-policy: keep
+  db:
+    enabled: false
+    storageClass: "local-path"
+    size: 2Gi
+    annotations:
+      helm.sh/resource-policy: keep
 
 nodeSelector: {}
 
