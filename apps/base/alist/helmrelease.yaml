@@ -29,7 +29,7 @@ spec:
       userData:
         enabled: true
         storageClass: "juicefs-oracle"
-        size: 5Gi
+        size: 50Gi
   upgrade:
     strategy:
       name: RetryOnFailure
