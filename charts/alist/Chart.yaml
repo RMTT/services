@@ -2,5 +2,5 @@ apiVersion: v2
 name: alist
 description: A file list program that supports multiple storages.
 type: application
-version: 0.1.2
+version: 0.1.4
 appVersion: "v3.62.0-aio"

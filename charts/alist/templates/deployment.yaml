@@ -54,22 +54,24 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
           volumeMounts:
-            - name: data
+            {{- if .Values.persistence.main.enabled }}
+            - name: main
               mountPath: /opt/alist/data
-            {{- if and .Values.persistence.enabled .Values.persistence.db.enabled }}
-            - name: db
-              mountPath: /opt/alist/data/db
+            {{- end }}
+            {{- if .Values.persistence.userData.enabled }}
+            - name: user-data
+              mountPath: /opt/alist/data/user-data
             {{- end }}
       volumes:
-        - name: data
-          {{- if .Values.persistence.enabled }}
+        - name: main
+          {{- if .Values.persistence.main.enabled }}
           persistentVolumeClaim:
-            claimName: alist-pvc
+            claimName: alist-main-pvc
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if and .Values.persistence.enabled .Values.persistence.db.enabled }}
-        - name: db
+        {{- if .Values.persistence.userData.enabled }}
+        - name: user-data
           persistentVolumeClaim:
-            claimName: alist-db-pvc
+            claimName: alist-user-data-pvc
         {{- end }}

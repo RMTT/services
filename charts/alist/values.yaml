@@ -3,15 +3,16 @@ service:
   port: 5244
 
 persistence:
-  enabled: true
-  storageClass: "local-path"
-  size: 5Gi
-  annotations:
-    helm.sh/resource-policy: keep
-  db:
+  main:
+    enabled: true
+    storageClass: "local-path"
+    size: 5Gi
+    annotations:
+      helm.sh/resource-policy: keep
+  userData:
     enabled: false
     storageClass: "local-path"
-    size: 2Gi
+    size: 5Gi
     annotations:
       helm.sh/resource-policy: keep
 
