@@ -61,3 +61,14 @@ Updated several Go modules and GitHub Actions dependencies, including:
 ---
 
 As always, thank you to all contributors who helped improve Miniflux in this release.
+
+Updated redis chart from 27.0.15 to 27.0.18. Changelog:
+[bitnami/*] Remove Azure Marketplace references (#36507)
+
+ai-assisted=no
+
+Signed-off-by: Jota Martos <jota.martos@broadcom.com>
+[bitnami/redis] bugfix: use TLS port on readiness probes when TLS is enabled (#36463)
+[bitnami/redis] feat: add support for sync checks on replica nodes with sentinel (#36461)
+[bitnami/redis] Add support to redis master service with useHostnames false (#35536)
+Remove TAC sentence present in some READMEs (#36381)
