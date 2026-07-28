@@ -1,5 +1,0 @@
-- "[bitnami/*] Remove Azure Marketplace references (#36507)\n\nai-assisted=no\n\nSigned-off-by: Jota Martos <jota.martos@broadcom.com>"
-- "[bitnami/redis] bugfix: use TLS port on readiness probes when TLS is enabled (#36463)"
-- "[bitnami/redis] feat: add support for sync checks on replica nodes with sentinel (#36461)"
-- "[bitnami/redis] Add support to redis master service with useHostnames false (#35536)"
-- "Remove TAC sentence present in some READMEs (#36381)\n\nSigned-off-by: Carlos Rodríguez Hernández <carlos.rodriguez-hernandez@broadcom.com>"
