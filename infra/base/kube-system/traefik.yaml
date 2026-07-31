@@ -18,7 +18,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: 41.0.2
+      version: 41.1.0
       sourceRef:
         kind: HelmRepository
         name: traefik
@@ -39,14 +39,14 @@ spec:
       web:
         nodePort: 80
         forwardedHeaders:
-          insecure: false 
+          insecure: false
           trustedIPs:
             - "10.42.0.0/16"
             - "100.64.0.0/10"
       websecure:
         nodePort: 443
         forwardedHeaders:
-          insecure: false 
+          insecure: false
           trustedIPs:
             - "10.42.0.0/16"
             - "100.64.0.0/10"
@@ -69,5 +69,5 @@ spec:
       name: data
       accessMode: ReadWriteOnce
       size: 128Mi
-      storageClass:  local-path
+      storageClass: local-path
       path: /data
