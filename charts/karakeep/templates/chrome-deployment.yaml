@@ -18,7 +18,7 @@ spec:
       {{- end }}
       containers:
         - name: chrome
-          image: gcr.io/zenika-hub/alpine-chrome:124
+          image: ghcr.io/karakeep-app/karakeep-chrome:release
           command:
             - chromium-browser
             - --headless
