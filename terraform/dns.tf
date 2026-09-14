@@ -4,7 +4,7 @@ locals {
     "rmtt.host" = data.sops_file.secrets.data["cf_zone_rmtt_host"]
   }
 
-  # public host A records -> cloudflare A + adguard
+  # public host A records -> cloudflare A + bind9
   public_dns = merge([
     for zone, entries in local.cfg.hosts.public : {
       for label, ip in entries : "${label}.${zone}" => {
@@ -21,23 +21,9 @@ locals {
   # All DNS records defined in config
   config_cf_dns = merge(local.public_dns, local.tunnel_dns)
 
-  # Extract all records from the cloudflare data source
-  cloudflare_existing_records = merge([
-    for zone_name, ds in data.cloudflare_dns_records.all_dns_records : {
-      for record in ds.result : record.name => {
-        name    = record.name
-        zone    = zone_name
-        type    = record.type
-        content = record.content
-        ttl     = record.ttl
-        proxied = record.proxied
-        id      = record.id
-      }
-    }
-  ]...)
 
   # LAN Only
-  dns_records = merge(
+  private_dns_records = merge(
     {
       for fqdn, r in local.public_dns : fqdn => {
         name      = r.name
@@ -57,16 +43,9 @@ locals {
   )
 }
 
-import {
-  for_each = var.import ? local.dns_records : {}
-
-  to = dns_a_record_set.dynamic[each.key]
-  id = "${each.key}."
-}
-
 # DNS A records using dns provider
 resource "dns_a_record_set" "dynamic" {
-  for_each = local.dns_records
+  for_each = local.private_dns_records
 
   zone      = each.value.zone
   name      = each.value.name
@@ -74,26 +53,11 @@ resource "dns_a_record_set" "dynamic" {
   ttl       = 300
 }
 
-data "cloudflare_dns_records" "all_dns_records" {
-  for_each = local.zone_lookup
-
-  zone_id = each.value
-}
-
-import {
-  for_each = var.import ? {
-    for fqdn, record in local.cloudflare_existing_records : fqdn => record
-  } : {}
-
-  to = cloudflare_dns_record.dynamic[each.key]
-  id = "${local.zone_lookup[each.value.zone]}/${each.value.id}"
-}
-
 resource "cloudflare_dns_record" "dynamic" {
-  for_each = var.import ? local.cloudflare_existing_records : local.config_cf_dns
+  for_each = local.config_cf_dns
 
   zone_id = local.zone_lookup[each.value.zone]
-  name    = each.value.name
+  name    = each.key
   content = each.value.content
   type    = each.value.type
   ttl     = each.value.ttl

@@ -27,7 +27,12 @@
     flake-utils.lib.eachSystem systems (
       system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+        };
         git-hooks-check = import ./git-hooks.nix { inherit pkgs git-hooks; };
       in
       {
@@ -42,6 +47,7 @@
             fluxcd
             jq
             sops
+            terraform
           ];
           shellHook = git-hooks-check.shellHook;
         };

@@ -39,12 +39,6 @@ locals {
   ]...)
 }
 
-import {
-  for_each = var.import ? local.tunnel_ids : {}
-
-  to = cloudflare_zero_trust_tunnel_cloudflared_config.dynamic[each.key]
-  id = "${data.sops_file.secrets.data["cf_account_id"]}/${each.value}"
-}
 
 resource "cloudflare_zero_trust_tunnel_cloudflared_config" "dynamic" {
   for_each = local.tunnel_ids

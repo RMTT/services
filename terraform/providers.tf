@@ -1,4 +1,12 @@
 terraform {
+  cloud {
+    organization = "rmtt-tech"
+
+    workspaces {
+      name = "terraform"
+    }
+  }
+
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -17,13 +25,6 @@ terraform {
 
 data "sops_file" "secrets" {
   source_file = "./secrets/keys.yaml"
-
-  lifecycle {
-    precondition {
-      condition     = var.import || (fileexists("${path.module}/terraform.tfstate") && file("${path.module}/terraform.tfstate") != "")
-      error_message = "If there is no tfstate file, run `terraform plan -var import=true` first"
-    }
-  }
 }
 
 provider "cloudflare" {
@@ -33,6 +34,7 @@ provider "cloudflare" {
 provider "dns" {
   update {
     server        = "oracle.infra.rmtt.host"
+    timeout       = "5s"
     key_name      = "terraform-key."
     key_algorithm = "hmac-sha256"
     key_secret    = data.sops_file.secrets.data["bind_terraform_key"]

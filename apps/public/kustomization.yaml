@@ -5,7 +5,6 @@ resources:
   - ../../secrets/miniflux
   - ../../secrets/pocket-id
 
-  - ../base/alist
   - ../base/gatus
   - ../base/karakeep
   - ../base/miniflux

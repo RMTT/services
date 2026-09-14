@@ -8,7 +8,6 @@ tunnels:
       auth: {}
       miniflux: {}
       karakeep: {}
-      alist: {}
       status: {}
 
 # Private host records -> Bind server
@@ -21,14 +20,11 @@ hosts:
       auth: 198.19.20.1
       miniflux: 198.19.20.1
       karakeep: 198.19.20.1
-      status: 198.19.20.1
-      alist: 198.19.20.1
   public:
     rmtt.host:
       k3s-master.infra: 198.19.20.1
       homerouter.infra: 198.19.19.1
       homerouter.home: 192.168.6.1
-      cn2-box.infra: 198.19.20.2
       cn2-box: 104.194.71.122
       oracle: 147.224.201.181
       oracle.infra: 198.19.20.1
