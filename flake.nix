@@ -42,12 +42,6 @@
 
         devShells.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
-            kubectl
-            kubectl-cnpg
-            fluxcd
-            jq
-            sops
-            terraform
           ];
           shellHook = git-hooks-check.shellHook;
         };
