@@ -58,12 +58,6 @@ spec:
           interval: 3m
           conditions:
             - "[CONNECTED] == true"
-        - name: homerouter
-          group: infra connectivity
-          url: icmp://homerouter.infra.rmtt.host
-          interval: 3m
-          conditions:
-            - "[CONNECTED] == true"
         - name: kube-runner
           group: infra connectivity
           url: icmp://Kube-runner.infra.rmtt.host
