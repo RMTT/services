@@ -20,11 +20,103 @@ spec:
     name: telegram
   eventSeverity: error
   eventSources:
+    # flux-system
     - kind: Kustomization
       name: "*"
+      namespace: flux-system
     - kind: HelmRelease
       name: "*"
+      namespace: flux-system
     - kind: GitRepository
       name: "*"
+      namespace: flux-system
     - kind: OCIRepository
       name: "*"
+      namespace: flux-system
+    - kind: HelmRepository
+      name: "*"
+      namespace: flux-system
+    - kind: HelmChart
+      name: "*"
+      namespace: flux-system
+
+    # kube-system
+    - kind: HelmRelease
+      name: "*"
+      namespace: kube-system
+    - kind: HelmRepository
+      name: "*"
+      namespace: kube-system
+    - kind: HelmChart
+      name: "*"
+      namespace: kube-system
+    - kind: Kustomization
+      name: "*"
+      namespace: kube-system
+
+    # operators
+    - kind: HelmRelease
+      name: "*"
+      namespace: operators
+    - kind: HelmRepository
+      name: "*"
+      namespace: operators
+    - kind: HelmChart
+      name: "*"
+      namespace: operators
+    - kind: Kustomization
+      name: "*"
+      namespace: operators
+
+    # Application namespaces
+    - kind: HelmRelease
+      name: "*"
+      namespace: gatus
+    - kind: HelmRepository
+      name: "*"
+      namespace: gatus
+    - kind: HelmChart
+      name: "*"
+      namespace: gatus
+    - kind: Kustomization
+      name: "*"
+      namespace: gatus
+
+    - kind: HelmRelease
+      name: "*"
+      namespace: karakeep
+    - kind: HelmRepository
+      name: "*"
+      namespace: karakeep
+    - kind: HelmChart
+      name: "*"
+      namespace: karakeep
+    - kind: Kustomization
+      name: "*"
+      namespace: karakeep
+
+    - kind: HelmRelease
+      name: "*"
+      namespace: miniflux
+    - kind: HelmRepository
+      name: "*"
+      namespace: miniflux
+    - kind: HelmChart
+      name: "*"
+      namespace: miniflux
+    - kind: Kustomization
+      name: "*"
+      namespace: miniflux
+
+    - kind: HelmRelease
+      name: "*"
+      namespace: pocket-id
+    - kind: HelmRepository
+      name: "*"
+      namespace: pocket-id
+    - kind: HelmChart
+      name: "*"
+      namespace: pocket-id
+    - kind: Kustomization
+      name: "*"
+      namespace: pocket-id

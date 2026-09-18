@@ -22,6 +22,7 @@ The `apps/` directory uses a base/cluster split:
 5. When creating a `HelmRelease`, use the app folder name as both the release name and the namespace.
 6. For `valuesFrom` in a `HelmRelease`, use `helm-values` as the name for the referenced `Secret` or `ConfigMap`.
 7. Enable the app on a cluster by adding `- ../base/<app>` to `apps/<cluster>/kustomization.yaml`. An app is not deployed anywhere until it is listed in a cluster.
+8. Add the new app's namespace to `telegram-alert.spec.eventSources` in `infra/base/flux-system/notifications.yaml` to ensure Flux alerts monitor the new service.
 
 ### Protecting Persistent Data Across App Removal
 
