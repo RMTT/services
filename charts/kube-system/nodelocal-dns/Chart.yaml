@@ -2,5 +2,5 @@ apiVersion: v2
 name: nodelocal-dns
 description: NodeLocal DNSCache - runs a DNS cache agent on each node to improve DNS performance
 type: application
-version: 0.1.0
-appVersion: "1.26.8"
+version: 0.1.1
+appVersion: "1.27.1"
